@@ -1,0 +1,77 @@
+package fileio;
+
+import java.util.ArrayList;
+
+public class UserInput {
+    private Credentials credentials;
+
+    private int tokensCount = 0; // numărul de tokeni pe care îl are utilizatorul la momentul curent
+    private int numFreePremiumMovies = 15; // numărul de filme gratuite disponibile în caz de cont premium pe care le mai are utilizatorul la dispoziție
+    private ArrayList<MovieInput> purchasedMovies = new ArrayList<>(); // filmele cumpărate de utilizator
+    private ArrayList<MovieInput> watchedMovies = new ArrayList<>(); // filmele vizualizate de către utilizator
+    private ArrayList<MovieInput> likedMovies = new ArrayList<>();  // filmele apreciate de către utilizator
+    private ArrayList<MovieInput> ratedMovies = new ArrayList<>(); // filmele cărora utilizatorul curent le-a oferit o notă
+
+    public UserInput() {
+
+    }
+    public UserInput(Credentials credentials) {
+        this.credentials = credentials;
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
+    }
+
+    public int getTokensCount() {
+        return tokensCount;
+    }
+
+    public void setTokensCount(int tokensCount) {
+        this.tokensCount = tokensCount;
+    }
+
+    public int getNumFreePremiumMovies() {
+        return numFreePremiumMovies;
+    }
+
+    public void setNumFreePremiumMovies(int numFreePremiumMovies) {
+        this.numFreePremiumMovies = numFreePremiumMovies;
+    }
+
+    public ArrayList<MovieInput> getPurchasedMovies() {
+        return purchasedMovies;
+    }
+
+    public void setPurchasedMovies(ArrayList<MovieInput> purchasedMovies) {
+        this.purchasedMovies = purchasedMovies;
+    }
+
+    public ArrayList<MovieInput> getWatchedMovies() {
+        return watchedMovies;
+    }
+
+    public void setWatchedMovies(ArrayList<MovieInput> watchedMovies) {
+        this.watchedMovies = watchedMovies;
+    }
+
+    public ArrayList<MovieInput> getLikedMovies() {
+        return likedMovies;
+    }
+
+    public void setLikedMovies(ArrayList<MovieInput> likedMovies) {
+        this.likedMovies = likedMovies;
+    }
+
+    public ArrayList<MovieInput> getRatedMovies() {
+        return ratedMovies;
+    }
+
+    public void setRatedMovies(ArrayList<MovieInput> ratedMovies) {
+        this.ratedMovies = ratedMovies;
+    }
+}
