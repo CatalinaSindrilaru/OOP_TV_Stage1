@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.MovieInput;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class FormMovie {
 
+    private static final DecimalFormat decfor = new DecimalFormat("0.00");
     static public ObjectNode movieFormed(MovieInput movie) {
 
         ObjectMapper mapper = new ObjectMapper();

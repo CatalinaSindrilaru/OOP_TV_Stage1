@@ -28,6 +28,7 @@ public class StartProgram {
         CurrentPage currentPage = new CurrentPage(); // posibil sa l fac singleton
         currentPage.setPageName("Homepage neautentificat");
 
+        String prevAction = null;
         for (ActionInput action : actions) {
 
             if (action.getType().compareTo("change page") == 0) {
@@ -38,9 +39,17 @@ public class StartProgram {
             } else { // daca e "on page"
                 // apelare functie on page
                 OnPage onPage = OnPage.getInstance();
-                int error = onPage.resolveCommand(input, currentPage, action);
+                int error = onPage.resolveCommand(input, currentPage, action, output, prevAction);
                 // scriere in display
-                DisplayCommand.writeInOutput(output, error, currentPage);
+                if (error == 0) {
+                    ErrorDisplay.displayError(output);
+                }
+//                } else {
+////                    DisplayCommand.writeInOutput(output, error, currentPage); // ar trebui sa mut asta la fiecare functie care are nevoie de output in parte
+//                }
+
+                prevAction = action.getFeature();
+//                currentPage.clearCurrentMoviesList(); // resetez mereu lista de current movies // posibil nu aici
             }
         }
     }
