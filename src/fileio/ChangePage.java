@@ -25,7 +25,7 @@ public class ChangePage {
             } else {
                 // eroare daca se incearca alta comanda
                 currentPage.clearCurrentMoviesList();
-                DisplayCommand.writeInOutput(output, 0, currentPage);
+                ErrorDisplay.displayError(output);
             }
             return;
         }
@@ -39,39 +39,28 @@ public class ChangePage {
             }else if(actionInput.getPage().compareTo("movies") == 0) {
 
                 currentPage.setPageName("movies");
-                // populez lista currentMovies din current page cu filmele ce nu sunt banate pentru tara utilizatorului curent
                 currentPage.clearCurrentMoviesList();
                 currentPage.populateCurrentMoviesList(input);
 
                 DisplayCommand.writeInOutput(output, 1, currentPage);
-
-                currentPage.clearCurrentMoviesList();
-
+                return;
 
             } else if (actionInput.getPage().compareTo("upgrades") == 0) {
                 currentPage.setPageName(actionInput.getPage());
             } else {
-
-                // doar afisare eroare
                 ErrorDisplay.displayError(output);
-//                currentPage.setCurrentUser(null);
-//                currentPage.setPageName("Homepage neautentificat");
             }
         }
 
         if (currentPage.getPageName().compareTo("movies") == 0) {
             if (actionInput.getPage().compareTo("see details") == 0) {
 
-//                currentPage.setPageName("see details");
-                currentPage.clearCurrentMoviesList();
-                currentPage.populateCurrentMoviesList(input);
 
                 if (currentPage.getCurrentMovieList().size() == 0) {
-//                    currentPage.setCurrentUser(null);
-//                    DisplayCommand.writeInOutput(output, 0, currentPage);
+
                     ErrorDisplay.displayError(output);
                 } else {
-                    // urmeaza un else in care ma leg si de campul movie
+
                     MovieInput movie = currentPage.findMovie(actionInput.getMovie());
                     if (movie == null) {
                         ErrorDisplay.displayError(output);
@@ -82,6 +71,8 @@ public class ChangePage {
                         currentPage.setPageName("see details");
                     }
                 }
+            } else if (actionInput.getPage().compareTo("login") == 0) {
+                ErrorDisplay.displayError(output);
             }
         }
 
@@ -92,7 +83,7 @@ public class ChangePage {
         }
 
         if (actionInput.getPage().compareTo("movies") == 0) {
-            if (currentPage.getPageName().compareTo("upgrades") == 0 || currentPage.getPageName().compareTo("see details") == 0) {
+            if (currentPage.getPageName().compareTo("upgrades") == 0 || currentPage.getPageName().compareTo("see details") == 0 || currentPage.getPageName().compareTo("movies") == 0) {
 
                 currentPage.setPageName("movies");
                 // populez lista currentMovies din current page cu filmele ce nu sunt banate pentru tara utilizatorului curent
@@ -100,8 +91,6 @@ public class ChangePage {
                 currentPage.populateCurrentMoviesList(input);
 
                 DisplayCommand.writeInOutput(output, 1, currentPage);
-
-                currentPage.clearCurrentMoviesList();
 
             }
         }

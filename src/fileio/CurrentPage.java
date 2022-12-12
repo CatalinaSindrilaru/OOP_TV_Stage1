@@ -34,13 +34,15 @@ public class CurrentPage {
 
     public void populateCurrentMoviesList(Input input) {
 
-        String countryUser = currentUser.getCredentials().getCountry();
+        if (currentUser != null) {
+            String countryUser = currentUser.getCredentials().getCountry();
 
-        for (MovieInput movie : input.getMovies()) {
-            ArrayList<String> countriesBanned = movie.getCountriesBanned();
+            for (MovieInput movie : input.getMovies()) {
+                ArrayList<String> countriesBanned = movie.getCountriesBanned();
 
-            if (!countriesBanned.contains(countryUser)) {
-                currentMovieList.add(movie);
+                if (!countriesBanned.contains(countryUser)) {
+                    currentMovieList.add(movie);
+                }
             }
         }
     }
@@ -52,6 +54,7 @@ public class CurrentPage {
     public void filterMoviesList(ActionInput actionInput) {
 
         if (actionInput.getFilters().getContains() != null) {
+
             // sterg filmele care nu au acei actori
             if (actionInput.getFilters().getContains().getActors() != null) {
                 for (int i = 0; i < currentMovieList.size(); i++) {

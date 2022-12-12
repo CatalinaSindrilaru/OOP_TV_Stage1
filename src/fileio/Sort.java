@@ -19,27 +19,42 @@ public class Sort {
             @Override
             public int compare(MovieInput o1, MovieInput o2) {
 
-                if (rating.compareTo("increasing") == 0) {
-                    if (Float.compare(o1.getRating(), o2.getRating()) != 0) {
-                        return Float.compare(o1.getRating(), o2.getRating());  // o1 - o2
-                    } else {
+                if (duration != null && rating != null) {
+                    if (duration.compareTo("increasing") == 0) {
 
-                        if (duration.compareTo("increasing") == 0) {
+                        if (o1.getDuration() != o2.getDuration()) {
                             return Integer.compare(o1.getDuration(), o2.getDuration());
                         } else {
+
+                            if (rating.compareTo("increasing") == 0) {
+                                return Float.compare(o1.getRating(), o2.getRating());
+                            } else {
+                                return Float.compare(o2.getRating(), o1.getRating());
+                            }
+                        }
+                    } else {
+
+                        if (o1.getDuration() != o2.getDuration()) {
                             return Integer.compare(o2.getDuration(), o1.getDuration());
+                        } else {
+                            if (rating.compareTo("increasing") == 0) {
+                                return Float.compare(o1.getRating(), o2.getRating());
+                            } else {
+                                return Float.compare(o2.getRating(), o1.getRating());
+                            }
                         }
                     }
-                } else {
-                    if (Float.compare(o2.getRating(), o1.getRating()) != 0) {
-                        return Float.compare(o2.getRating(), o1.getRating());
+                } else if (duration != null) {
+                    if (duration.compareTo("increasing") == 0) {
+                        return Integer.compare(o1.getDuration(), o2.getDuration());
                     } else {
-
-                        if (duration.compareTo("increasing") == 0) {
-                            return Integer.compare(o1.getDuration(), o2.getDuration());
-                        } else {
-                            return Integer.compare(o2.getDuration(), o1.getDuration());
-                        }
+                        return Integer.compare(o2.getDuration(), o1.getDuration());
+                    }
+                } else {
+                    if (rating.compareTo("increasing") == 0) {
+                        return Float.compare(o1.getRating(), o2.getRating());
+                    } else {
+                        return Float.compare(o2.getRating(), o1.getRating());
                     }
                 }
             }

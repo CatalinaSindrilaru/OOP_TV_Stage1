@@ -18,7 +18,7 @@ public class OnPage {
         return instance;
     }
 
-    public int resolveCommand(Input input, CurrentPage currentPage, ActionInput actionInput, ArrayNode output, String prevAction) {
+    public int resolveCommand(Input input, CurrentPage currentPage, ActionInput actionInput, ArrayNode output) {
 
         if (actionInput.getFeature().compareTo("register") == 0) {
             if (currentPage.getPageName().compareTo("register") == 0) {
@@ -34,7 +34,6 @@ public class OnPage {
                 currentPage.clearCurrentMoviesList();
                 DisplayCommand.writeInOutput(output, 1, currentPage);
             }
-            // posibil else return 0
         }
 
         if (actionInput.getFeature().compareTo("login") == 0) {
@@ -53,7 +52,6 @@ public class OnPage {
                     return 0;
                 }
             } else {
-//                currentPage.setCurrentUser(null);
                 return 0;
             }
         }
@@ -106,13 +104,19 @@ public class OnPage {
         if (actionInput.getFeature().compareTo("purchase") == 0) {
             if (currentPage.getPageName().compareTo("see details") == 0) {
 
-                MovieInput movie = currentPage.findMovie(actionInput.getMovie());
+                MovieInput movie = currentPage.getCurrentMovieList().get(0);
 
                 UserInput currentUser = currentPage.getCurrentUser();
-                if (currentUser.getCredentials().getAccountType().compareTo("premium") == 0 && currentUser.getNumFreePremiumMovies() > 1) {
+                if (currentUser.getCredentials().getAccountType().compareTo("premium") == 0) {
 
-                    int freeMovies = currentUser.getNumFreePremiumMovies();
-                    currentUser.setNumFreePremiumMovies(freeMovies - 1);
+                    if (currentUser.getNumFreePremiumMovies() >= 1) {
+                        int freeMovies = currentUser.getNumFreePremiumMovies();
+                        currentUser.setNumFreePremiumMovies(freeMovies - 1);
+                    } else {
+                        int tokens = currentUser.getTokensCount();
+                        currentUser.setTokensCount(tokens - 2);
+                    }
+
                 } else {
                     int tokens = currentUser.getTokensCount();
                     currentUser.setTokensCount(tokens - 2);
@@ -121,6 +125,10 @@ public class OnPage {
                 currentUser.addAtPurchasedMovies(movie);
                 DisplayCommand.writeInOutput(output, 1, currentPage);
             } // posibil si aici sa pun pe else eroare
+
+            else {
+                ErrorDisplay.displayError(output);
+            }
         }
 
         if (actionInput.getFeature().compareTo("watch") == 0) {
@@ -167,7 +175,10 @@ public class OnPage {
                 if (currentPage.getCurrentUser() != null && currentPage.getCurrentUser().watchedMovie(movie)) {
 
                     int rate = actionInput.getRate();
-
+                    if (rate > 5) {
+                        ErrorDisplay.displayError(output);
+                        return 1;
+                    }
                     int oldSumRatings = movie.getSumRatings();
                     int oldNumRatings = movie.getNumRatings();
 
