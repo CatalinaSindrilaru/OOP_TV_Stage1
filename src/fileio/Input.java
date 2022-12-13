@@ -12,7 +12,8 @@ public class Input {
 
     }
 
-    public Input(ArrayList<UserInput> users, ArrayList<MovieInput> movies, ArrayList<ActionInput> actions) {
+    public Input(ArrayList<UserInput> users, ArrayList<MovieInput> movies,
+                 ArrayList<ActionInput> actions) {
         this.users = users;
         this.movies = movies;
         this.actions = actions;
@@ -52,7 +53,9 @@ public class Input {
         for (UserInput user : users) {
 
             if (user.getCredentials().getName().compareTo(credentials.getName()) == 0) {
-                if (user.getCredentials().getPassword().compareTo(credentials.getPassword()) == 0) {
+
+                if (user.getCredentials().getPassword()
+                        .compareTo(credentials.getPassword()) == 0) {
                     return user;
                 }
             }

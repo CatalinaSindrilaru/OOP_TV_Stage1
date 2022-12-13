@@ -13,8 +13,8 @@ public class FormCurrentUser {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode userObjectNode = mapper.createObjectNode();
 
-        // apelez functie care imi creeaza un objectnode pt credentials
         ObjectNode credentials = credentialsFormed(user.getCredentials());
+
         ArrayNode purchasedMovies = FormMoviesList.moviesListFormed(user.getPurchasedMovies());
         ArrayNode watchedMovies = FormMoviesList.moviesListFormed(user.getWatchedMovies());
         ArrayNode likedMovie = FormMoviesList.moviesListFormed(user.getLikedMovies());
@@ -23,7 +23,6 @@ public class FormCurrentUser {
         userObjectNode.set("credentials", credentials);
         userObjectNode.put("tokensCount", user.getTokensCount());
         userObjectNode.put("numFreePremiumMovies", user.getNumFreePremiumMovies());
-        // urmeaza sa apelez o functie care imi formeaza un ArrayNode de filme
         userObjectNode.set("purchasedMovies", purchasedMovies);
         userObjectNode.set("watchedMovies", watchedMovies);
         userObjectNode.set("likedMovies", likedMovie);
@@ -33,6 +32,7 @@ public class FormCurrentUser {
     }
 
     static private ObjectNode credentialsFormed(Credentials credentials) {
+
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode credentialsObjectNode = mapper.createObjectNode();
 
@@ -43,6 +43,5 @@ public class FormCurrentUser {
         credentialsObjectNode.put("balance", credentials.getBalance());
 
         return credentialsObjectNode;
-
     }
 }

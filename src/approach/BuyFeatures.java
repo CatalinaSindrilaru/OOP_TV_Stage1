@@ -1,4 +1,6 @@
-package fileio;
+package approach;
+
+import approach.CurrentPage;
 
 public class BuyFeatures {
 
@@ -13,6 +15,7 @@ public class BuyFeatures {
     }
 
     static public void buyPremiumAccount(CurrentPage currentPage) {
+
         currentPage.getCurrentUser().getCredentials().setAccountType("premium");
         int tokensUser = currentPage.getCurrentUser().getTokensCount();
         currentPage.getCurrentUser().setTokensCount(tokensUser - 10);

@@ -17,7 +17,9 @@ public class ActionInput {
 
     }
 
-    public ActionInput(String type, String page, String feature, FiltersInput filters, Credentials credentials, String startsWith, int count, int rate, String movie) {
+    public ActionInput(String type, String page, String feature, FiltersInput filters,
+                       Credentials credentials, String startsWith, int count, int rate,
+                       String movie) {
         this.type = type;
         this.page = page;
         this.feature = feature;

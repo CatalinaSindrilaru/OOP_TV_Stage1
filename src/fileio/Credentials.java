@@ -10,7 +10,8 @@ public class Credentials {
     public Credentials() {
 
     }
-    public Credentials(String name, String password, String accountType, String country, String balance) {
+    public Credentials(String name, String password, String accountType, String country,
+                       String balance) {
         this.name = name;
         this.password = password;
         this.accountType = accountType;

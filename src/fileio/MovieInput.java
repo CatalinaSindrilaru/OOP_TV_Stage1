@@ -21,7 +21,8 @@ public class MovieInput {
 
     }
 
-    public MovieInput(String name, int year, int duration, ArrayList<String> genres, ArrayList<String> actors, ArrayList<String> countriesBanned) {
+    public MovieInput(String name, int year, int duration, ArrayList<String> genres,
+                      ArrayList<String> actors, ArrayList<String> countriesBanned) {
         this.name = name;
         this.year = year;
         this.duration = duration;

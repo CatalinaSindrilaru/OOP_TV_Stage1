@@ -93,18 +93,6 @@ public class UserInput {
     }
 
 
-//    public MovieInput findMovie(String prefix) {
-//
-//        if (currentMovieList.size() != 0) {
-//            for (MovieInput movie : currentMovieList) {
-//                if (movie.getName().startsWith(prefix)) {
-//                    return movie;
-//                }
-//            }
-//        }
-//        return null;
-//    }
-
     public boolean purchasedMovie(MovieInput purchasedMovie) {
 
         for (MovieInput movie : purchasedMovies) {

@@ -1,4 +1,6 @@
-package fileio;
+package approach;
+
+import fileio.*;
 
 import java.util.ArrayList;
 
@@ -7,6 +9,21 @@ public class CurrentPage {
     private UserInput currentUser;
 
     private ArrayList<MovieInput> currentMovieList = new ArrayList<>();
+
+    private static CurrentPage instance = null;
+
+    private CurrentPage() {
+
+    }
+
+    public static CurrentPage getInstance() {
+        if (instance == null) {
+
+            instance = new CurrentPage();
+        }
+
+        return instance;
+    }
 
     public String getPageName() {
         return pageName;
