@@ -1,10 +1,20 @@
 package approach;
 
-import fileio.*;
+import approach.filters.Filter;
+import approach.filters.FiltersFactory;
+import approach.filters.Sort;
+import fileio.UserInput;
+import fileio.MovieInput;
+import fileio.Input;
+import fileio.ActionInput;
 
 import java.util.ArrayList;
 
-public class CurrentPage {
+/**
+ * Class that contains information about the current page like name, user that is logged
+ * at the moment, and an array list with the movies that the actual user has
+ */
+public final class CurrentPage {
     private String pageName;
     private UserInput currentUser;
 
@@ -16,6 +26,10 @@ public class CurrentPage {
 
     }
 
+    /**
+     * Returns the instance of a CurrentPage class (Singleton)
+     * @return CurrentPage instance
+     */
     public static CurrentPage getInstance() {
         if (instance == null) {
 
@@ -25,31 +39,54 @@ public class CurrentPage {
         return instance;
     }
 
+    /**
+     * @return pageName
+     */
     public String getPageName() {
         return pageName;
     }
 
-    public void setPageName(String pageName) {
+    /**
+     * @param pageName new value
+     */
+    public void setPageName(final String pageName) {
         this.pageName = pageName;
     }
 
+    /**
+     * @return currentUser
+     */
     public UserInput getCurrentUser() {
         return currentUser;
     }
 
-    public void setCurrentUser(UserInput currentUser) {
+    /**
+     * @param currentUser new value
+     */
+    public void setCurrentUser(final UserInput currentUser) {
         this.currentUser = currentUser;
     }
 
+    /**
+     * @return currentMovieList
+     */
     public ArrayList<MovieInput> getCurrentMovieList() {
         return currentMovieList;
     }
 
-    public void setCurrentMovieList(ArrayList<MovieInput> currentMovieList) {
+    /**
+     * @param currentMovieList new value
+     */
+    public void setCurrentMovieList(final ArrayList<MovieInput> currentMovieList) {
         this.currentMovieList = currentMovieList;
     }
 
-    public void populateCurrentMoviesList(Input input) {
+    /**
+     * Add all the movies that are not banned for the currentUser in the
+     * currentMovieList
+     * @param input input of the program
+     */
+    public void populateCurrentMoviesList(final Input input) {
 
         if (currentUser != null) {
             String countryUser = currentUser.getCredentials().getCountry();
@@ -64,57 +101,50 @@ public class CurrentPage {
         }
     }
 
+    /**
+     * Deletes all the elements from the currentMovieList
+     */
     public void clearCurrentMoviesList() {
         currentMovieList.clear();
     }
 
-    public void filterMoviesList(ActionInput actionInput) {
+    /**
+     * Filters the movies list by actors, genres, rating, duration
+     * @param actionInput current action
+     */
+    public void filterMoviesList(final ActionInput actionInput) {
 
         if (actionInput.getFilters().getContains() != null) {
 
-            // sterg filmele care nu au acei actori
-            if (actionInput.getFilters().getContains().getActors() != null) {
-                for (int i = 0; i < currentMovieList.size(); i++) {
-                    MovieInput movie = currentMovieList.get(i);
-                    ArrayList<String> actorsMovie = movie.getActors();
-                    ArrayList<String> actorsNeeded = actionInput.getFilters().getContains().getActors();
+            FiltersFactory filtersFactory = new FiltersFactory();
+            Filter filter;
 
-                    for (String actor : actorsNeeded) {
-                        if (!actorsMovie.contains(actor)) {
-                            currentMovieList.remove(movie);
-                            i--;
-                            break;
-                        }
-                    }
-                }
+            /* Delete the movies that do not contain these actors */
+            if (actionInput.getFilters().getContains().getActors() != null) {
+                filter = filtersFactory.createFilter("actors");
+                filter.filter(currentMovieList, actionInput);
             }
 
-            // sterg filmele care nu au acele genuri
+            /* Delete the movies that do not have these genres */
             if (actionInput.getFilters().getContains().getGenre() != null) {
-                for (int i = 0; i < currentMovieList.size(); i++) {
-                    MovieInput movie = currentMovieList.get(i);
-                    ArrayList<String> genresMovie = movie.getGenres();
-                    ArrayList<String> genresNeeded = actionInput.getFilters().getContains().getGenre();
-
-                    for (String genre : genresNeeded) {
-                        if (!genresMovie.contains(genre)) {
-                            currentMovieList.remove(movie);
-                            i--;
-                            break;
-                        }
-                    }
-                }
+                filter = filtersFactory.createFilter("genres");
+                filter.filter(currentMovieList, actionInput);
             }
         }
 
-        // sortare
+        /* Sort the movies */
         if (actionInput.getFilters().getSort() != null) {
             Sort.sortMovies(currentMovieList, actionInput.getFilters().getSort());
         }
 
     }
 
-    public MovieInput findMovie(String prefix) {
+    /**
+     * Find and return the movie that starts with the given word
+     * @param prefix String
+     * @return movie
+     */
+    public MovieInput findMovie(final String prefix) {
 
         if (currentMovieList.size() != 0) {
             for (MovieInput movie : currentMovieList) {

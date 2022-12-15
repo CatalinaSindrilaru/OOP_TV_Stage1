@@ -1,20 +1,30 @@
 package approach.actionPage;
 
-import Displays.DisplayCommand;
+import displays.DisplayCommand;
 import approach.CurrentPage;
 import approach.pages.Errors;
 import approach.pages.ErrorsPagesFactory;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionInput;
-import Displays.ErrorDisplay;
+import displays.ErrorDisplay;
 import fileio.Input;
 import fileio.MovieInput;
 
+/**
+ * Class for "change page" action
+ */
 public class ChangePage implements ActionPage {
 
+    /**
+     * Resolve each type of "change page" action
+     * @param currentPage the current page I'm on
+     * @param actionInput action information
+     * @param input information about users, movies, actions
+     * @param output final ArrayNode in which must be added
+     */
     @Override
-    public void resolveCommand(CurrentPage currentPage, ActionInput actionInput,
-                               Input input, ArrayNode output) {
+    public void resolveCommand(final CurrentPage currentPage, final ActionInput actionInput,
+                               final Input input, final ArrayNode output) {
 
         ErrorsPagesFactory errorsPagesFactory = new ErrorsPagesFactory();
         boolean errorOccurred = false;
@@ -54,7 +64,7 @@ public class ChangePage implements ActionPage {
             return;
         }
 
-        if(actionInput.getPage().compareTo("movies") == 0) {
+        if (actionInput.getPage().compareTo("movies") == 0) {
             currentPage.setPageName("movies");
             currentPage.clearCurrentMoviesList();
             currentPage.populateCurrentMoviesList(input);

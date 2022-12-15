@@ -1,10 +1,12 @@
 package fileio;
 
+/**
+ * Contains all the actions
+ */
 public class ActionInput {
     private String type;
     private String page;
     private String feature;
-
     private FiltersInput filters;
     private Credentials credentials;
     private String startsWith;
@@ -17,9 +19,10 @@ public class ActionInput {
 
     }
 
-    public ActionInput(String type, String page, String feature, FiltersInput filters,
-                       Credentials credentials, String startsWith, int count, int rate,
-                       String movie) {
+    public ActionInput(final String type, final String page, final String feature,
+                       final FiltersInput filters, final Credentials credentials,
+                       final String startsWith, final int count, final int rate,
+                       final String movie) {
         this.type = type;
         this.page = page;
         this.feature = feature;
@@ -31,75 +34,129 @@ public class ActionInput {
         this.movie = movie;
     }
 
+    /**
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    /**
+     * @param type new value
+     */
+    public void setType(final String type) {
         this.type = type;
     }
 
+    /**
+     * @return page
+     */
     public String getPage() {
         return page;
     }
 
-    public void setPage(String page) {
+    /**
+     * @param page new value
+     */
+    public void setPage(final String page) {
         this.page = page;
     }
 
+    /**
+     * @return feature
+     */
     public String getFeature() {
         return feature;
     }
 
-    public void setFeature(String feature) {
+    /**
+     * @param feature new value
+     */
+    public void setFeature(final String feature) {
         this.feature = feature;
     }
 
+    /**
+     * @return credentials
+     */
     public Credentials getCredentials() {
         return credentials;
     }
 
-    public void setCredentials(Credentials credentials) {
+    /**
+     * @param credentials new value
+     */
+    public void setCredentials(final Credentials credentials) {
         this.credentials = credentials;
     }
 
+    /**
+     * @return startsWith
+     */
     public String getStartsWith() {
         return startsWith;
     }
 
-    public void setStartsWith(String startsWith) {
+    /**
+     * @param startsWith new value
+     */
+    public void setStartsWith(final String startsWith) {
         this.startsWith = startsWith;
     }
 
+    /**
+     * @return count
+     */
     public int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    /**
+     * @param count new value
+     */
+    public void setCount(final int count) {
         this.count = count;
     }
 
+    /**
+     * @return rate
+     */
     public int getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    /**
+     * @param rate new value
+     */
+    public void setRate(final int rate) {
         this.rate = rate;
     }
 
+    /**
+     * @return filters
+     */
     public FiltersInput getFilters() {
         return filters;
     }
 
-    public void setFilters(FiltersInput filters) {
+    /**
+     * @param filters new value
+     */
+    public void setFilters(final FiltersInput filters) {
         this.filters = filters;
     }
 
+    /**
+     * @return movie
+     */
     public String getMovie() {
         return movie;
     }
 
-    public void setMovie(String movie) {
+    /**
+     * @param movie new value
+     */
+    public void setMovie(final String movie) {
         this.movie = movie;
     }
 }

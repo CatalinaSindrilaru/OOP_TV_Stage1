@@ -1,4 +1,4 @@
-package Displays;
+package displays;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -6,8 +6,15 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.ArrayList;
 
-public class ErrorDisplay {
-    static public void displayError(ArrayNode output) {
+public final class ErrorDisplay {
+
+    private ErrorDisplay() { }
+
+    /**
+     * Display an error message with message "Error", empty list of movies and null user
+     * @param output final ArrayNode in which must be added
+     */
+    public static void displayError(final ArrayNode output) {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode outputCommand = mapper.createObjectNode();

@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionInput;
 import fileio.Input;
 
+/**
+ * Interface for an action page ("change page", "on page")
+ */
 public interface ActionPage {
-    public void resolveCommand(CurrentPage currentPage, ActionInput actionInput,
+    void resolveCommand(CurrentPage currentPage, ActionInput actionInput,
                                Input input, ArrayNode output);
 }

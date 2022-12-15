@@ -1,13 +1,20 @@
-package approach;
+package approach.filters;
 
 import fileio.FiltersSort;
 import fileio.MovieInput;
 
 import java.util.ArrayList;
 
-public class Sort {
+public final class Sort {
 
-    static public void sortMovies(ArrayList<MovieInput> movies, FiltersSort sort) {
+    private Sort() { }
+
+    /**
+     * Sort the list of movies by the criteria from the sort parameter
+     * @param movies list of movies that need to be sort
+     * @param sort criteria for sort
+     */
+    public static void sortMovies(final ArrayList<MovieInput> movies, final FiltersSort sort) {
 
         String rating = sort.getRating();
         String duration = sort.getDuration();
@@ -39,8 +46,18 @@ public class Sort {
         });
     }
 
-    private static int compareDuration(MovieInput o1, MovieInput o2, int duration,
-                                       int duration2, String rating) {
+    /**
+     *
+     * @param o1 first movie
+     * @param o2 second movie
+     * @param duration duration for first movie
+     * @param duration2 duration for second movie
+     * @param rating increasing/decreasing
+     * @return number according to which the sorting will be done
+     */
+    private static int compareDuration(final MovieInput o1, final MovieInput o2,
+                                       final int duration, final int duration2,
+                                       final String rating) {
 
         if (o1.getDuration() != o2.getDuration()) {
             return Integer.compare(duration, duration2);

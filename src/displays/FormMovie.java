@@ -1,4 +1,4 @@
-package Displays;
+package displays;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -7,9 +7,16 @@ import fileio.MovieInput;
 
 import java.util.ArrayList;
 
-public class FormMovie {
+public final class FormMovie {
 
-    static public ObjectNode movieFormed(MovieInput movie) {
+    private FormMovie() { }
+
+    /**
+     * Take a movie and return it as an ObjectNode in the appropriate format
+     * @param movie movie that is returned in the desired format
+     * @return ObjectNode with the movie
+     */
+    public static ObjectNode movieFormed(final MovieInput movie) {
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -32,7 +39,12 @@ public class FormMovie {
         return movieObjectNode;
     }
 
-    static private ArrayNode stringListFormed(ArrayList<String> list) {
+    /**
+     * Take the list of Strings and put it in an ArrayNode
+     * @param list list of Strings
+     * @return ArrayNode
+     */
+    private static ArrayNode stringListFormed(final ArrayList<String> list) {
 
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode listArrayNode = mapper.createArrayNode();

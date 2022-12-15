@@ -1,16 +1,27 @@
 package approach.events;
 
-import Displays.DisplayCommand;
-import Displays.ErrorDisplay;
+import displays.DisplayCommand;
+import displays.ErrorDisplay;
 import approach.CurrentPage;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionInput;
 import fileio.Input;
 
-public class LoginEvent implements Event{
+/**
+ * Class for the login action
+ */
+public class LoginEvent implements Event {
+
+    /**
+     * Login the user with the given credentials
+     * @param currentPage the current page I'm on
+     * @param actionInput action information
+     * @param input information about users, movies, actions
+     * @param output final ArrayNode in which must be added
+     */
     @Override
-    public void makeEvent(CurrentPage currentPage, ActionInput actionInput, Input input,
-                          ArrayNode output) {
+    public void makeEvent(final CurrentPage currentPage, final ActionInput actionInput,
+                          final Input input, final ArrayNode output) {
 
         if (currentPage.getPageName().compareTo("login") == 0) {
 
@@ -22,7 +33,7 @@ public class LoginEvent implements Event{
                 DisplayCommand.writeInOutput(output, currentPage);
 
             } else {
-                // eroare la login, userul nu exista in baza de date
+                /* If the user doesn't exist in the database */
                 currentPage.setPageName("Homepage neautentificat");
                 ErrorDisplay.displayError(output);
             }

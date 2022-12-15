@@ -1,15 +1,27 @@
 package approach.pages;
 
-import Displays.ErrorDisplay;
+import displays.ErrorDisplay;
 import approach.CurrentPage;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import fileio.ActionInput;
 
-public class UnauthenticatedHomepage implements Errors{
+/**
+ * Verify errors for "Homepage neautentificat"
+ */
+public class UnauthenticatedHomepage implements Errors {
+    /**
+     * Verify if the action is places on the right page
+     * @param currentPage the current page I'm on
+     * @param actionInput action information
+     * @param output final ArrayNode in which must be added
+     * @return true/false
+     */
     @Override
-    public boolean checkErrors(CurrentPage currentPage, ActionInput actionInput, ArrayNode output) {
+    public boolean checkErrors(final CurrentPage currentPage, final ActionInput actionInput,
+                               final ArrayNode output) {
 
-        if (actionInput.getPage().compareTo("login") != 0 && actionInput.getPage().compareTo("register") != 0) {
+        if (actionInput.getPage().compareTo("login") != 0
+                && actionInput.getPage().compareTo("register") != 0) {
             ErrorDisplay.displayError(output);
             return true;
         }

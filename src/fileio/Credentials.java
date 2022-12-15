@@ -1,5 +1,9 @@
 package fileio;
 
+/**
+ * Contains all the information (credentials)
+ * for a user
+ */
 public class Credentials {
     private String name;
     private String password;
@@ -10,8 +14,8 @@ public class Credentials {
     public Credentials() {
 
     }
-    public Credentials(String name, String password, String accountType, String country,
-                       String balance) {
+    public Credentials(final String name, final String password, final String accountType,
+                       final String country, final String balance) {
         this.name = name;
         this.password = password;
         this.accountType = accountType;
@@ -19,43 +23,73 @@ public class Credentials {
         this.balance = balance;
     }
 
+    /**
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    /**
+     * @param name new value
+     */
+    public void setName(final String name) {
         this.name = name;
     }
 
+    /**
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    /**
+     * @param password new value
+     */
+    public void setPassword(final String password) {
         this.password = password;
     }
 
+    /**
+     * @return accountType
+     */
     public String getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    /**
+     * @param accountType new value
+     */
+    public void setAccountType(final String accountType) {
         this.accountType = accountType;
     }
 
+    /**
+     * @return country
+     */
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    /**
+     * @param country new value
+     */
+    public void setCountry(final String country) {
         this.country = country;
     }
 
+    /**
+     * @return balance
+     */
     public String getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    /**
+     * @param balance new value
+     */
+    public void setBalance(final String balance) {
         this.balance = balance;
     }
 }

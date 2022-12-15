@@ -1,5 +1,9 @@
 package fileio;
 
+/**
+ * Class that contains the information about the sort
+ * and the contains fields for filter the list of movies
+ */
 public class FiltersInput {
     private FiltersSort sort;
     private FiltersContains contains;
@@ -8,24 +12,36 @@ public class FiltersInput {
 
     }
 
-    public FiltersInput(FiltersSort sort, FiltersContains contains) {
+    public FiltersInput(final FiltersSort sort, final FiltersContains contains) {
         this.sort = sort;
         this.contains = contains;
     }
 
+    /**
+     * @return sort
+     */
     public FiltersSort getSort() {
         return sort;
     }
 
-    public void setSort(FiltersSort sort) {
+    /**
+     * @param sort new value
+     */
+    public void setSort(final FiltersSort sort) {
         this.sort = sort;
     }
 
+    /**
+     * @return contains
+     */
     public FiltersContains getContains() {
         return contains;
     }
 
-    public void setContains(FiltersContains contains) {
+    /**
+     * @param contains new value
+     */
+    public void setContains(final FiltersContains contains) {
         this.contains = contains;
     }
 }

@@ -1,13 +1,16 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import fileio.*;
+import fileio.Input;
 
 import java.io.File;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+
+    private Main() { }
+
+    public static void main(final String[] args) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
 

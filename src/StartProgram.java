@@ -1,14 +1,17 @@
 import approach.actionPage.ActionFactory;
 import approach.actionPage.ActionPage;
-import approach.actionPage.ChangePage;
 import approach.CurrentPage;
-import approach.actionPage.OnPage;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import fileio.*;
+import fileio.ActionInput;
+import fileio.Input;
 
 import java.util.ArrayList;
 
-public class StartProgram {
+/**
+ * Class that starts the program by looking at all the
+ * actions
+ */
+public final class StartProgram {
 
     // Singleton
     private static StartProgram instance = null;
@@ -16,6 +19,10 @@ public class StartProgram {
 
     }
 
+    /**
+     * Returns the instance of a StartProgram class (Singleton)
+     * @return StartProgram instance
+     */
     public static StartProgram getInstance() {
         if (instance == null) {
             instance = new StartProgram();
@@ -23,7 +30,13 @@ public class StartProgram {
         return instance;
     }
 
-    public void run(Input input, ArrayNode output) {
+    /**
+     * Look at all the actions and identify the "change page"
+     * and "on page" ones
+     * @param input contains the users, movies, actions
+     * @param output  final ArrayNode in which must be added
+     */
+    public void run(final Input input, final ArrayNode output) {
 
         ArrayList<ActionInput> actions = input.getActions();
 

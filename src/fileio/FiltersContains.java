@@ -2,6 +2,10 @@ package fileio;
 
 import java.util.ArrayList;
 
+/**
+ * Contains a list of actors and a list of genres according to which
+ * can filter the list of movies
+ */
 public class FiltersContains {
     private ArrayList<String> actors;
     private ArrayList<String> genre;
@@ -10,24 +14,36 @@ public class FiltersContains {
 
     }
 
-    public FiltersContains(ArrayList<String> actors, ArrayList<String> genre) {
+    public FiltersContains(final ArrayList<String> actors, final ArrayList<String> genre) {
         this.actors = actors;
         this.genre = genre;
     }
 
+    /**
+     * @return actors
+     */
     public ArrayList<String> getActors() {
         return actors;
     }
 
-    public void setActors(ArrayList<String> actors) {
+    /**
+     * @param actors new value
+     */
+    public void setActors(final ArrayList<String> actors) {
         this.actors = actors;
     }
 
+    /**
+     * @return genre
+     */
     public ArrayList<String> getGenre() {
         return genre;
     }
 
-    public void setGenre(ArrayList<String> genre) {
+    /**
+     * @param genre new value
+     */
+    public void setGenre(final ArrayList<String> genre) {
         this.genre = genre;
     }
 }

@@ -1,4 +1,4 @@
-package Displays;
+package displays;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -6,9 +6,16 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.Credentials;
 import fileio.UserInput;
 
-public class FormCurrentUser {
+public final class FormCurrentUser {
 
-    static public ObjectNode currentUserFormed(UserInput user) {
+    private FormCurrentUser() { }
+
+    /**
+     * Take a user and put it in an ObjectNode in the appropriate format
+     * @param user user that is returned in the desired format
+     * @return ObjectNode
+     */
+    public static ObjectNode currentUserFormed(final UserInput user) {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode userObjectNode = mapper.createObjectNode();
@@ -31,7 +38,12 @@ public class FormCurrentUser {
         return userObjectNode;
     }
 
-    static private ObjectNode credentialsFormed(Credentials credentials) {
+    /**
+     * Take the credentials and put them in an ObjectNode in the appropriate format
+     * @param credentials credentials that are returned in the desired format
+     * @return ObjectNode
+     */
+    private static ObjectNode credentialsFormed(final Credentials credentials) {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode credentialsObjectNode = mapper.createObjectNode();

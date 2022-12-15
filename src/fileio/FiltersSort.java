@@ -1,5 +1,9 @@
 package fileio;
 
+/**
+ * Class that contains the rating and the duration
+ * according to which the list of movies must be sorted
+ */
 public class FiltersSort {
     private String rating;
     private String duration;
@@ -8,24 +12,36 @@ public class FiltersSort {
 
     }
 
-    public FiltersSort(String rating, String duration) {
+    public FiltersSort(final String rating, final String duration) {
         this.rating = rating;
         this.duration = duration;
     }
 
+    /**
+     * @return rating
+     */
     public String getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    /**
+     * @param rating new value
+     */
+    public void setRating(final String rating) {
         this.rating = rating;
     }
 
+    /**
+     * @return duration
+     */
     public String getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    /**
+     * @param duration new value
+     */
+    public void setDuration(final String duration) {
         this.duration = duration;
     }
 }

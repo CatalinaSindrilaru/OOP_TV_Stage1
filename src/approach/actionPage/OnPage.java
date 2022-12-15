@@ -1,20 +1,27 @@
 package approach.actionPage;
 
-import Displays.DisplayCommand;
-import Displays.ErrorDisplay;
-import approach.BuyFeatures;
 import approach.CurrentPage;
 import approach.events.Event;
 import approach.events.EventsFactory;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import fileio.*;
+import fileio.ActionInput;
+import fileio.Input;
 
+/**
+ * Class for "on page" action
+ */
 public class OnPage implements ActionPage {
 
-
+    /**
+     * Call methods for each type of action ("on page")
+     * @param currentPage the current page I'm on
+     * @param actionInput action information
+     * @param input information about users, movies, actions
+     * @param output final ArrayNode in which must be added
+     */
     @Override
-    public void resolveCommand(CurrentPage currentPage, ActionInput actionInput, Input input,
-                               ArrayNode output) {
+    public void resolveCommand(final CurrentPage currentPage, final ActionInput actionInput,
+                               final Input input, final ArrayNode output) {
 
         EventsFactory eventsFactory = new EventsFactory();
         Event event = null;
